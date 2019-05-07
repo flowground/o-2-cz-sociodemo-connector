@@ -1,0 +1,85 @@
+{
+    "title": "Socio-demo",
+    "description": "Socio-demo API can be used to obtain time-aggregated data representing groups of people on the given location in the Czech Republic. Having a location, the API can return count of people belonging to age group or gender aggregated by hours. The socio-demo data is based on presence of mobile stations in O2 mobile network.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/o2.cz/sociodemo/1.2.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://developer.o2.cz/sociodemo/sandbox/api",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "age": {
+            "main": "./lib/actions/age.js",
+            "title": "Presence in a location aggregated by age",
+            "description": "Get count of people in a given location and an hour, aggregated by age.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/age.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "gender": {
+            "main": "./lib/actions/gender.js",
+            "title": "Presence in a location aggregated by gender",
+            "description": "Get count of people in a given location and an hour, aggregated by gender.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/gender.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getInfo": {
+            "main": "./lib/actions/getInfo.js",
+            "title": "Information about versions of application and data.",
+            "description": "",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getInfo.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "location": {
+            "required": true,
+            "type": "string"
+        },
+        "ageGroup": {
+            "required": true,
+            "type": "string"
+        },
+        "occurenceType": {
+            "required": true,
+            "type": "string"
+        },
+        "hour": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
